@@ -1,14 +1,8 @@
 @font-face { font-family: 'Jameel Noori'; src: local('Jameel Noori Nastaleeq'), local('Jameel Noori'); }
 
 :root {
-    --bg: #0a0c0e;
-    --card: #14181c;
-    --input: #1e2329;
-    --accent: #00a2ff;
-    --border: #2d343c;
-    --text: #ffffff;
-    --success: #00ff88;
-    --error: #ff4444;
+    --bg: #0a0c0e; --card: #14181c; --input: #1e2329; --accent: #00a2ff;
+    --border: #2d343c; --text: #ffffff; --success: #00ff88; --error: #ff4444;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,8 +44,8 @@ input[type="text"], textarea.nastaleeq {
 @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
 .nat-container { display: flex; gap: 20px; width: 100%; justify-content: space-between; margin-top: 5px; }
-.nat-btn { flex: 1; background: var(--input); border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
-.nat-btn:hover { border-color: var(--accent); }
+.nat-btn { flex: 1; background: var(--input); border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s; text-align: center;}
+.nat-btn:hover { border-color: var(--accent); background: #252d35; }
 .nat-btn.active-ar { font-family: 'Jameel Noori', serif; color: var(--success); border-color: var(--success); font-size: 1.1rem; }
 
 #inputText { width: 100%; min-height: 120px; background: #111418; border: 2px solid var(--border); border-radius: 10px; color: #fff; padding: 15px; font-family: 'Jameel Noori', serif; font-size: 1.1rem; resize: none; }
