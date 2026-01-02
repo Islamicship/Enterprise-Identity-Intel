@@ -1,0 +1,63 @@
+@font-face { font-family: 'Jameel Noori'; src: local('Jameel Noori Nastaleeq'), local('Jameel Noori'); }
+
+:root {
+    --bg: #0a0c0e;
+    --card: #14181c;
+    --input: #1e2329;
+    --accent: #00a2ff;
+    --border: #2d343c;
+    --text: #ffffff;
+    --success: #00ff88;
+    --error: #ff4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 15px; display: flex; justify-content: center; min-height: 100vh; }
+.main-container { width: 100%; max-width: 1100px; }
+
+.app-header { margin-bottom: 20px; display: inline-flex; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px; cursor: pointer; transition: 0.2s; }
+.app-header:hover { opacity: 0.8; }
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.app-logo { width: 45px; height: 45px; border-radius: 8px; border: 1px solid var(--accent); }
+.title-text h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+.title-text span { font-size: 0.65rem; letter-spacing: 2px; color: #555; font-weight: 700; text-transform: uppercase; }
+
+.data-card { border: 1px solid var(--border); border-radius: 12px; background: var(--card); padding: 20px; margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.badge { background: linear-gradient(90deg, var(--accent), #00d4ff); color: white; padding: 3px 12px; border-radius: 4px; font-weight: 800; font-size: 0.65rem; }
+.grid-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.field-group label { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 700; font-size: 0.7rem; margin-bottom: 6px; text-transform: uppercase; }
+.icon { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+
+.wrapper { position: relative; display: flex; width: 100%; }
+
+input[type="text"], textarea.nastaleeq {
+    width: 100%; background: var(--input); border: 1px solid var(--border); border-radius: 6px;
+    color: #fff; padding: 10px 45px 10px 12px; font-size: 0.95rem; height: 46px; outline: none; transition: 0.3s;
+}
+.valid { border-color: var(--success) !important; box-shadow: 0 0 8px rgba(0,255,136,0.1); }
+.invalid { border-color: var(--error) !important; }
+
+.copy-btn { position: absolute; right: 8px; top: 7px; background: #2a313a; border: none; width: 32px; height: 32px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5; }
+.copy-btn:hover { background: #3a4450; }
+.icon-copy { width: 14px; height: 14px; background-color: var(--accent); -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>') center/contain no-repeat; }
+.icon-tick { display: none; color: var(--success); font-size: 14px; }
+.copy-btn.copied { background: #113d2c; }
+.copy-btn.copied .icon-copy { display: none; }
+.copy-btn.copied .icon-tick { display: block; }
+
+.loading { position: relative; overflow: hidden; background: #1a1e24 !important; }
+.loading::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); animation: shimmer 1s infinite; }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+.nat-container { display: flex; gap: 20px; width: 100%; justify-content: space-between; margin-top: 5px; }
+.nat-btn { flex: 1; background: var(--input); border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
+.nat-btn:hover { border-color: var(--accent); }
+.nat-btn.active-ar { font-family: 'Jameel Noori', serif; color: var(--success); border-color: var(--success); font-size: 1.1rem; }
+
+#inputText { width: 100%; min-height: 120px; background: #111418; border: 2px solid var(--border); border-radius: 10px; color: #fff; padding: 15px; font-family: 'Jameel Noori', serif; font-size: 1.1rem; resize: none; }
+#processBtn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--accent), #0066cc); color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; margin-top: 10px; }
+.danger-btn { background: #251111; color: #ff8888; border: 1px solid #442222; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; }
+textarea.nastaleeq { font-family: 'Jameel Noori', 'Amiri', serif !important; direction: rtl; font-size: 1.3rem !important; word-spacing: 10px; overflow: hidden; height: auto; min-height: 46px; }
+
+@media (max-width: 900px) { .grid-layout { grid-template-columns: repeat(2, 1fr); } .nat-container { flex-wrap: wrap; gap: 10px; } }
+@media (max-width: 600px) { .grid-layout { grid-template-columns: 1fr; } }
