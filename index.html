@@ -3,134 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Identity Intel PRO</title>
+    <title>Enterprise Tools Suite</title>
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="manifest" href="manifest.json">
     
-    <!-- Fonts Import -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Main Style Sheet -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="main-container">
-        <!-- Header Section -->
-        <header class="app-header" id="headerReload" title="Reload Application">
-            <div class="logo-area">
-                <img src="logo.png" alt="Logo" class="app-logo">
-                <div class="title-text">
-                    <h1>Enterprise Identity Intel</h1>
-                    <span>V2.0 Core Processor</span>
+    <!-- NAVIGATION -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <button class="nav-tab active" data-target="tab-extractor">
+                <span class="icon">🔍</span> Identity Intel
+            </button>
+            <button class="nav-tab" data-target="tab-generator">
+                <span class="icon">🎲</span> Realistic ID
+            </button>
+            <button id="installAppBtn" class="nav-tab install-btn" style="display: none;">
+                <span class="icon">⬇️</span> Install App
+            </button>
+        </div>
+    </nav>
+
+    <!-- TAB 1: IDENTITY INTEL (EXTRACTOR) -->
+    <div id="tab-extractor" class="app-section active-section">
+        <div class="main-container">
+            <header class="app-header" id="headerReload" title="Reload Application">
+                <div class="logo-area">
+                    <img src="logo.png" alt="Logo" class="app-logo">
+                    <div class="title-text">
+                        <h1>Enterprise Identity Intel</h1>
+                        <span>V2.0 Core Processor</span>
+                    </div>
                 </div>
+            </header>
+
+            <fieldset class="data-card" style="display: none;">
+                <legend class="badge">EXTRACTED INFORMATION</legend>
+                <div class="grid-layout">
+                    <div class="field-group" id="grp-nameAr" style="display: none;">
+                        <label>Naam (Arabic)</label>
+                        <div class="wrapper"><textarea id="nameArabic" class="nastaleeq skeleton-target" readonly rows="1"></textarea><button class="copy-btn">✔</button></div>
+                    </div>
+                    <div class="field-group" id="grp-nameEn" style="display: none;">
+                        <label>Name (English)</label>
+                        <div class="wrapper"><input type="text" id="nameEnglish" class="skeleton-target" readonly><button class="copy-btn">✔</button></div>
+                    </div>
+                    <div class="field-group" id="grp-aqama" style="display: none;">
+                        <label>Aqama Number</label>
+                        <div class="wrapper"><input type="text" id="aqamaNumber" class="skeleton-target" readonly><button class="copy-btn">✔</button></div>
+                    </div>
+                    <div class="field-group" id="grp-dobH" style="display: none;">
+                        <label>DOB (Hijri)</label>
+                        <div class="wrapper"><input type="text" id="dobHijri" class="skeleton-target" maxlength="10"><button class="copy-btn">✔</button></div>
+                    </div>
+                    <div class="field-group" id="grp-dobG" style="display: none;">
+                        <label>DOB (Gregorian)</label>
+                        <div class="wrapper"><input type="text" id="dobGregorian" class="skeleton-target" maxlength="10"><button class="copy-btn">✔</button></div>
+                    </div>
+                    <div class="field-group full-width" id="grp-nat" style="display: none;">
+                        <label>Nationality Quick Selection</label>
+                        <div id="natSelector" class="nat-container">
+                            <button type="button" class="nat-btn" data-en="Pakistan" data-ar="باكستان">Pakistan</button>
+                            <button type="button" class="nat-btn" data-en="India" data-ar="الهند">India</button>
+                            <button type="button" class="nat-btn" data-en="Nepal" data-ar="نيبال">Nepal</button>
+                            <button type="button" class="nat-btn" data-en="Bangladesh" data-ar="بنجلاديش">Bangladesh</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="terminal-box">
+                <div class="terminal-header"><label>INPUT TERMINAL</label><button id="clearAllBtn" class="danger-btn">Clear Everything</button></div>
+                <textarea id="inputText" placeholder="Paste system text here..."></textarea>
+                <button id="processBtn">EXTRACT DATA NOW</button>
             </div>
-        </header>
-
-        <!-- Main Data Card (Initially Hidden) -->
-        <fieldset class="data-card" style="display: none;">
-            <legend class="badge">EXTRACTED INFORMATION</legend>
-            
-            <div class="grid-layout">
-                <!-- 1. Name Arabic -->
-                <div class="field-group" id="grp-nameAr" style="display: none;">
-                    <label>
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> 
-                        Naam (Arabic)
-                    </label>
-                    <div class="wrapper">
-                        <textarea id="nameArabic" class="nastaleeq skeleton-target" readonly rows="1"></textarea>
-                        <button class="copy-btn" title="Copy"><span class="icon-copy"></span><span class="icon-tick">✔</span></button>
-                    </div>
-                </div>
-
-                <!-- 2. Name English -->
-                <div class="field-group" id="grp-nameEn" style="display: none;">
-                    <label>
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg> 
-                        Name (English)
-                    </label>
-                    <div class="wrapper">
-                        <input type="text" id="nameEnglish" class="skeleton-target" readonly>
-                        <button class="copy-btn" title="Copy"><span class="icon-copy"></span><span class="icon-tick">✔</span></button>
-                    </div>
-                </div>
-
-                <!-- 3. Aqama Number -->
-                <div class="field-group" id="grp-aqama" style="display: none;">
-                    <label>
-                        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="7" y1="8" x2="7" y2="8"></line><line x1="7" y1="12" x2="7" y2="12"></line><line x1="7" y1="16" x2="7" y2="16"></line></svg> 
-                        Aqama Number
-                    </label>
-                    <div class="wrapper">
-                        <input type="text" id="aqamaNumber" class="skeleton-target" readonly>
-                        <button class="copy-btn" title="Copy"><span class="icon-copy"></span><span class="icon-tick">✔</span></button>
-                    </div>
-                </div>
-
-                <!-- 4. DOB Hijri -->
-                <div class="field-group" id="grp-dobH" style="display: none;">
-                    <label>
-                        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 
-                        DOB (Hijri)
-                    </label>
-                    <div class="wrapper">
-                        <input type="text" id="dobHijri" class="skeleton-target" maxlength="10">
-                        <button class="copy-btn" title="Copy"><span class="icon-copy"></span><span class="icon-tick">✔</span></button>
-                    </div>
-                </div>
-
-                <!-- 5. DOB Gregorian -->
-                <div class="field-group" id="grp-dobG" style="display: none;">
-                    <label>
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> 
-                        DOB (Gregorian)
-                    </label>
-                    <div class="wrapper">
-                        <input type="text" id="dobGregorian" class="skeleton-target" maxlength="10">
-                        <button class="copy-btn" title="Copy"><span class="icon-copy"></span><span class="icon-tick">✔</span></button>
-                    </div>
-                </div>
-
-                <!-- 6. Nationality Buttons (Also Hidden Initially) -->
-                <div class="field-group full-width" id="grp-nat" style="display: none;">
-                    <label>Nationality Quick Selection</label>
-                    <div id="natSelector" class="nat-container">
-                        <button type="button" class="nat-btn" data-en="Pakistan" data-ar="باكستان">Pakistan</button>
-                        <button type="button" class="nat-btn" data-en="India" data-ar="الهند">India</button>
-                        <button type="button" class="nat-btn" data-en="Nepal" data-ar="نيبال">Nepal</button>
-                        <button type="button" class="nat-btn" data-en="Bangladesh" data-ar="بنجلاديش">Bangladesh</button>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-
-        <!-- Input Terminal -->
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <label>INPUT TERMINAL</label>
-                <button id="clearAllBtn" class="danger-btn">Clear Everything</button>
-            </div>
-            <textarea id="inputText" placeholder="Paste system text here..."></textarea>
-            <button id="processBtn">EXTRACT DATA NOW</button>
         </div>
     </div>
 
-    <!-- SCRIPTS SECTION (Hybrid Mode: Online + Offline) -->
-    
-    <!-- 1. Moment.js Core -->
+    <!-- TAB 2: REALISTIC ID (GENERATOR) -->
+    <div id="tab-generator" class="app-section" style="display: none;">
+        <div class="gen-wrapper">
+            <div class="gen-container">
+                <header class="gen-header">
+                    <h1>Realistic Digital Identity</h1>
+                    <p class="gen-tagline">Smart, Secure & Localized Generator</p>
+                </header>
+
+                <main>
+                    <div class="gen-selection-grid">
+                        <div class="gen-control-group">
+                            <label>Select Country</label>
+                            <select id="country-select" class="gen-dropdown">
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="India">India</option>
+                                <option value="UAE">UAE</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                            </select>
+                        </div>
+                        <div class="gen-control-group" id="city-selection-container">
+                            <label>Select City / Region</label>
+                            <select id="city-select" class="gen-dropdown">
+                                <!-- PUNJAB IS DEFAULT (FIRST) -->
+                                <option value="Punjab">Punjab</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Karachi">Karachi</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="Peshawar">Peshawar</option>
+                                <option value="Quetta">Quetta</option>
+                                <option value="Azad Kashmir">Azad Kashmir</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gen-grid">
+                        <div class="gen-data-box"><label>1️⃣ CNIC / National ID</label><div class="gen-data-content"><span id="id-number"></span><button class="gen-copy-btn" data-target="id-number">📋</button></div></div>
+                        <div class="gen-data-box"><label>2️⃣ License Number</label><div class="gen-data-content"><span id="license-number"></span><button class="gen-copy-btn" data-target="license-number">📋</button></div></div>
+                        <div class="gen-data-box"><label>3️⃣ Issue Date</label><div class="gen-data-content"><span id="issue-date"></span><button class="gen-copy-btn" data-target="issue-date">📋</button></div></div>
+                        <div class="gen-data-box"><label>4️⃣ Expiry Date</label><div class="gen-data-content"><span id="expiry-date"></span><button class="gen-copy-btn" data-target="expiry-date">📋</button></div></div>
+                        <div class="gen-data-box gen-full-width"><label>5️⃣ Full Address</label><div class="gen-data-content"><span id="full-address"></span><button class="gen-copy-btn" data-target="full-address">📋</button></div></div>
+                        <div class="gen-data-box gen-date-box"><label>6️⃣ Current Date</label><div class="gen-data-content"><span id="current-date"></span><button class="gen-copy-btn" data-target="current-date">📋</button></div></div>
+                        <div class="gen-data-box"><label>7️⃣ Weekday</label><div class="gen-data-content"><span id="weekday"></span><button class="gen-copy-btn" data-target="weekday">📋</button></div></div>
+                    </div>
+
+                    <div class="gen-button-group">
+                        <button id="generate-btn" class="gen-generate-button">Generate New Identity</button>
+                        <button id="copy-all-btn" class="gen-generate-button gen-secondary">Copy All Details</button>
+                    </div>
+                </main>
+                
+                <footer class="gen-footer">
+                    <p>© 2025 Creative Men • Enterprise Edition</p>
+                </footer>
+            </div>
+            <div id="gen-toast" class="gen-toast">Copied!</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script>
-        if (!window.moment) { document.write('<script src="moment.min.js"><\/script>'); }
-    </script>
-
-    <!-- 2. Moment Hijri Plugin -->
+    <script>if (!window.moment) { document.write('<script src="moment.min.js"><\/script>'); }</script>
     <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
-    <script>
-        if (!window.moment || !window.moment.fn.iYear) { document.write('<script src="moment-hijri.min.js"><\/script>'); }
-    </script>
-
-    <!-- 3. Main Logic -->
+    <script>if (!window.moment || !window.moment.fn.iYear) { document.write('<script src="moment-hijri.min.js"><\/script>'); }</script>
     <script src="script.js"></script>
-    
 </body>
 </html>
